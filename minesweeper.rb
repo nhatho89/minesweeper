@@ -1,4 +1,5 @@
 require "byebug"
+require "yaml"
 class Minesweeper
 
     def initialize(player)
@@ -15,7 +16,18 @@ class Minesweeper
       @gameboard.player_display
       move = @player.get_move
       make_move(move)
+      save_game
 
+    end
+
+    def save_game
+      save_file = File.open("save_game", "w")
+      yamlfile = @gameboard.to_yaml
+      IO.binwrite(save_file, yamlfile)
+    end
+
+    def load_game
+      @gameboard = YAML::load(IO.binread("save_game"))
     end
 
     def make_move(move)
@@ -175,6 +187,13 @@ end
 # player = Player.new("Ryan")
 # player.get_move
 # board.count_adj_bombs([5,5])
+
 player = Player.new("Ryan")
 game = Minesweeper.new(player)
+puts "load previous game or new game? (load, new)"
+user_input = gets.chomp.downcase
+if user_input == "load"
+  game.load_game
+end
+
 game.play

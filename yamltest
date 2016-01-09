@@ -1,0 +1,6 @@
+--- !ruby/object:Testclass
+color: :red
+size: :small
+--- !ruby/object:Testclass
+color: :red
+size: :small
