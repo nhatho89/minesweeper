@@ -129,7 +129,11 @@ class Board
     { left: [row, col - 1],
       right: [row, col + 1],
       top: [row + 1, col],
-      bot: [row - 1, col]
+      bot: [row - 1, col],
+      upL: [row + 1, col - 1],
+      upR: [row + 1, col + 1],
+      botL: [row - 1, col - 1],
+      botR: [row - 1, col + 1]
     }
 
     count = adjacent_spots.values.select do |spot|
